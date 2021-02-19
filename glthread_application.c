@@ -1,3 +1,12 @@
+/**
+ * @Author: jamil
+ * @Date:   2021-02-18T18:43:23-06:00
+ * @Last modified by:   jamil
+ * @Last modified time: 2021-02-18T21:44:48-06:00
+ */
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
@@ -22,7 +31,7 @@ start_address(glthread_node_t *node_t){
   offsetValue=offset(emp_t,glnode);
   printf("offset = %d\n", offsetValue);
   // printf("glnode address received= %d\n", (unsigned int)node_t);
-  return (struct emp_*)(node_t-offsetValue);
+  return (struct emp_*)((char *)node_t-offsetValue);
 }
 
 void
