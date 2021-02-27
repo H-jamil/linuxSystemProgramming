@@ -1,0 +1,101 @@
+
+test.exe:	file format Mach-O 64-bit x86-64
+
+
+Disassembly of section __TEXT,__text:
+
+0000000100003f20 _compute_square:
+100003f20: 55                          	pushq	%rbp
+100003f21: 48 89 e5                    	movq	%rsp, %rbp
+100003f24: 89 7d fc                    	movl	%edi, -4(%rbp)
+100003f27: 8b 45 fc                    	movl	-4(%rbp), %eax
+100003f2a: 0f af 45 fc                 	imull	-4(%rbp), %eax
+100003f2e: f2 0f 2a c0                 	cvtsi2sd	%eax, %xmm0
+100003f32: 5d                          	popq	%rbp
+100003f33: c3                          	retq
+100003f34: 66 2e 0f 1f 84 00 00 00 00 00       	nopw	%cs:(%rax,%rax)
+100003f3e: 66 90                       	nop
+
+0000000100003f40 _compute_circle_area:
+100003f40: 55                          	pushq	%rbp
+100003f41: 48 89 e5                    	movq	%rsp, %rbp
+100003f44: 48 83 ec 10                 	subq	$16, %rsp
+100003f48: 89 7d fc                    	movl	%edi, -4(%rbp)
+100003f4b: 8b 7d fc                    	movl	-4(%rbp), %edi
+100003f4e: e8 cd ff ff ff              	callq	-51 <_compute_square>
+100003f53: f2 0f 10 0d 55 00 00 00     	movsd	85(%rip), %xmm1
+100003f5b: f2 0f 59 c8                 	mulsd	%xmm0, %xmm1
+100003f5f: 0f 28 c1                    	movaps	%xmm1, %xmm0
+100003f62: 48 83 c4 10                 	addq	$16, %rsp
+100003f66: 5d                          	popq	%rbp
+100003f67: c3                          	retq
+100003f68: 0f 1f 84 00 00 00 00 00     	nopl	(%rax,%rax)
+
+0000000100003f70 _main:
+100003f70: 55                          	pushq	%rbp
+100003f71: 48 89 e5                    	movq	%rsp, %rbp
+100003f74: 48 83 ec 20                 	subq	$32, %rsp
+100003f78: c7 45 fc 00 00 00 00        	movl	$0, -4(%rbp)
+100003f7f: 89 7d f8                    	movl	%edi, -8(%rbp)
+100003f82: 48 89 75 f0                 	movq	%rsi, -16(%rbp)
+100003f86: c7 45 ec 0a 00 00 00        	movl	$10, -20(%rbp)
+100003f8d: 8b 7d ec                    	movl	-20(%rbp), %edi
+100003f90: e8 ab ff ff ff              	callq	-85 <_compute_circle_area>
+100003f95: bf 64 00 00 00              	movl	$100, %edi
+100003f9a: f2 0f 11 45 e0              	movsd	%xmm0, -32(%rbp)
+100003f9f: e8 9c ff ff ff              	callq	-100 <_compute_circle_area>
+100003fa4: 31 c0                       	xorl	%eax, %eax
+100003fa6: 48 83 c4 20                 	addq	$32, %rsp
+100003faa: 5d                          	popq	%rbp
+100003fab: c3                          	retq
+
+Disassembly of section __TEXT,__const:
+
+0000000100003fb0 __const:
+100003fb0: 1f                          	<unknown>
+100003fb1: 85 eb                       	testl	%ebp, %ebx
+100003fb3: 51                          	pushq	%rcx
+100003fb4: b8                          	<unknown>
+100003fb5: 1e                          	<unknown>
+100003fb6: 09 40                       	<unknown>
+
+Disassembly of section __TEXT,__unwind_info:
+
+0000000100003fb8 __unwind_info:
+100003fb8: 01 00                       	addl	%eax, (%rax)
+100003fba: 00 00                       	addb	%al, (%rax)
+100003fbc: 1c 00                       	sbbb	$0, %al
+100003fbe: 00 00                       	addb	%al, (%rax)
+100003fc0: 00 00                       	addb	%al, (%rax)
+100003fc2: 00 00                       	addb	%al, (%rax)
+100003fc4: 1c 00                       	sbbb	$0, %al
+100003fc6: 00 00                       	addb	%al, (%rax)
+100003fc8: 00 00                       	addb	%al, (%rax)
+100003fca: 00 00                       	addb	%al, (%rax)
+100003fcc: 1c 00                       	sbbb	$0, %al
+100003fce: 00 00                       	addb	%al, (%rax)
+100003fd0: 02 00                       	addb	(%rax), %al
+100003fd2: 00 00                       	addb	%al, (%rax)
+100003fd4: 20 3f                       	andb	%bh, (%rdi)
+100003fd6: 00 00                       	addb	%al, (%rax)
+100003fd8: 34 00                       	xorb	$0, %al
+100003fda: 00 00                       	addb	%al, (%rax)
+100003fdc: 34 00                       	xorb	$0, %al
+100003fde: 00 00                       	addb	%al, (%rax)
+100003fe0: ad                          	lodsl	(%rsi), %eax
+100003fe1: 3f                          	<unknown>
+100003fe2: 00 00                       	addb	%al, (%rax)
+100003fe4: 00 00                       	addb	%al, (%rax)
+100003fe6: 00 00                       	addb	%al, (%rax)
+100003fe8: 34 00                       	xorb	$0, %al
+100003fea: 00 00                       	addb	%al, (%rax)
+100003fec: 03 00                       	addl	(%rax), %eax
+100003fee: 00 00                       	addb	%al, (%rax)
+100003ff0: 0c 00                       	orb	$0, %al
+100003ff2: 01 00                       	addl	%eax, (%rax)
+100003ff4: 10 00                       	adcb	%al, (%rax)
+100003ff6: 01 00                       	addl	%eax, (%rax)
+100003ff8: 00 00                       	addb	%al, (%rax)
+100003ffa: 00 00                       	addb	%al, (%rax)
+100003ffc: 00 00                       	addb	%al, (%rax)
+100003ffe: 00 01                       	addb	%al, (%rcx)

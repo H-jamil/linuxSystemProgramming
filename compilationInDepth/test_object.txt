@@ -1,0 +1,148 @@
+
+test_object.o:	file format Mach-O 64-bit x86-64
+
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 _compute_square:
+       0: 55                           	pushq	%rbp
+       1: 48 89 e5                     	movq	%rsp, %rbp
+       4: 89 7d fc                     	movl	%edi, -4(%rbp)
+       7: 8b 45 fc                     	movl	-4(%rbp), %eax
+       a: 0f af 45 fc                  	imull	-4(%rbp), %eax
+       e: f2 0f 2a c0                  	cvtsi2sd	%eax, %xmm0
+      12: 5d                           	popq	%rbp
+      13: c3                           	retq
+      14: 66 2e 0f 1f 84 00 00 00 00 00	nopw	%cs:(%rax,%rax)
+      1e: 66 90                        	nop
+
+0000000000000020 _compute_circle_area:
+      20: 55                           	pushq	%rbp
+      21: 48 89 e5                     	movq	%rsp, %rbp
+      24: 48 83 ec 10                  	subq	$16, %rsp
+      28: 89 7d fc                     	movl	%edi, -4(%rbp)
+      2b: 8b 7d fc                     	movl	-4(%rbp), %edi
+      2e: e8 00 00 00 00               	callq	0 <_compute_circle_area+0x13>
+      33: f2 0f 10 0d 55 00 00 00      	movsd	85(%rip), %xmm1
+      3b: f2 0f 59 c8                  	mulsd	%xmm0, %xmm1
+      3f: 0f 28 c1                     	movaps	%xmm1, %xmm0
+      42: 48 83 c4 10                  	addq	$16, %rsp
+      46: 5d                           	popq	%rbp
+      47: c3                           	retq
+      48: 0f 1f 84 00 00 00 00 00      	nopl	(%rax,%rax)
+
+0000000000000050 _main:
+      50: 55                           	pushq	%rbp
+      51: 48 89 e5                     	movq	%rsp, %rbp
+      54: 48 83 ec 20                  	subq	$32, %rsp
+      58: c7 45 fc 00 00 00 00         	movl	$0, -4(%rbp)
+      5f: 89 7d f8                     	movl	%edi, -8(%rbp)
+      62: 48 89 75 f0                  	movq	%rsi, -16(%rbp)
+      66: c7 45 ec 0a 00 00 00         	movl	$10, -20(%rbp)
+      6d: 8b 7d ec                     	movl	-20(%rbp), %edi
+      70: e8 00 00 00 00               	callq	0 <_main+0x25>
+      75: bf 64 00 00 00               	movl	$100, %edi
+      7a: f2 0f 11 45 e0               	movsd	%xmm0, -32(%rbp)
+      7f: e8 00 00 00 00               	callq	0 <_main+0x34>
+      84: 31 c0                        	xorl	%eax, %eax
+      86: 48 83 c4 20                  	addq	$32, %rsp
+      8a: 5d                           	popq	%rbp
+      8b: c3                           	retq
+
+Disassembly of section __TEXT,__literal8:
+
+0000000000000090 __literal8:
+      90: 1f                           	<unknown>
+      91: 85 eb                        	testl	%ebp, %ebx
+      93: 51                           	pushq	%rcx
+      94: b8                           	<unknown>
+      95: 1e                           	<unknown>
+      96: 09 40                        	<unknown>
+
+Disassembly of section __LD,__compact_unwind:
+
+0000000000000098 __compact_unwind:
+		...
+      a0: 14 00                        	adcb	$0, %al
+      a2: 00 00                        	addb	%al, (%rax)
+      a4: 00 00                        	addb	%al, (%rax)
+      a6: 00 01                        	addb	%al, (%rcx)
+		...
+      b8: 20 00                        	andb	%al, (%rax)
+      ba: 00 00                        	addb	%al, (%rax)
+      bc: 00 00                        	addb	%al, (%rax)
+      be: 00 00                        	addb	%al, (%rax)
+      c0: 28 00                        	subb	%al, (%rax)
+      c2: 00 00                        	addb	%al, (%rax)
+      c4: 00 00                        	addb	%al, (%rax)
+      c6: 00 01                        	addb	%al, (%rcx)
+		...
+      d8: 50                           	pushq	%rax
+      d9: 00 00                        	addb	%al, (%rax)
+      db: 00 00                        	addb	%al, (%rax)
+      dd: 00 00                        	addb	%al, (%rax)
+      df: 00 3c 00                     	addb	%bh, (%rax,%rax)
+      e2: 00 00                        	addb	%al, (%rax)
+      e4: 00 00                        	addb	%al, (%rax)
+      e6: 00 01                        	addb	%al, (%rcx)
+		...
+
+Disassembly of section __TEXT,__eh_frame:
+
+00000000000000f8 __eh_frame:
+      f8: 14 00                        	adcb	$0, %al
+      fa: 00 00                        	addb	%al, (%rax)
+      fc: 00 00                        	addb	%al, (%rax)
+      fe: 00 00                        	addb	%al, (%rax)
+     100: 01 7a 52                     	addl	%edi, 82(%rdx)
+     103: 00 01                        	addb	%al, (%rcx)
+     105: 78 10                        	js	16 <__eh_frame+0x1f>
+     107: 01 10                        	addl	%edx, (%rax)
+     109: 0c 07                        	orb	$7, %al
+     10b: 08 90 01 00 00 24            	orb	%dl, 603979777(%rax)
+     111: 00 00                        	addb	%al, (%rax)
+     113: 00 1c 00                     	addb	%bl, (%rax,%rax)
+     116: 00 00                        	addb	%al, (%rax)
+     118: e8 fe ff ff ff               	callq	-2 <__eh_frame+0x23>
+     11d: ff ff                        	<unknown>
+     11f: ff 14 00                     	callq	*(%rax,%rax)
+     122: 00 00                        	addb	%al, (%rax)
+     124: 00 00                        	addb	%al, (%rax)
+     126: 00 00                        	addb	%al, (%rax)
+     128: 00 41 0e                     	addb	%al, 14(%rcx)
+     12b: 10 86 02 43 0d 06            	adcb	%al, 101532418(%rsi)
+     131: 00 00                        	addb	%al, (%rax)
+     133: 00 00                        	addb	%al, (%rax)
+     135: 00 00                        	addb	%al, (%rax)
+     137: 00 24 00                     	addb	%ah, (%rax,%rax)
+     13a: 00 00                        	addb	%al, (%rax)
+     13c: 44 00 00                     	addb	%r8b, (%rax)
+     13f: 00 e0                        	addb	%ah, %al
+     141: fe ff                        	<unknown>
+     143: ff ff                        	<unknown>
+     145: ff ff                        	<unknown>
+     147: ff 28                        	ljmpl	*(%rax)
+		...
+     151: 41 0e                        	<unknown>
+     153: 10 86 02 43 0d 06            	adcb	%al, 101532418(%rsi)
+     159: 00 00                        	addb	%al, (%rax)
+     15b: 00 00                        	addb	%al, (%rax)
+     15d: 00 00                        	addb	%al, (%rax)
+     15f: 00 24 00                     	addb	%ah, (%rax,%rax)
+     162: 00 00                        	addb	%al, (%rax)
+     164: 6c                           	insb	%dx, %es:(%rdi)
+     165: 00 00                        	addb	%al, (%rax)
+     167: 00 e8                        	addb	%ch, %al
+     169: fe ff                        	<unknown>
+     16b: ff ff                        	<unknown>
+     16d: ff ff                        	<unknown>
+     16f: ff 3c 00                     	<unknown>
+     172: 00 00                        	addb	%al, (%rax)
+     174: 00 00                        	addb	%al, (%rax)
+     176: 00 00                        	addb	%al, (%rax)
+     178: 00 41 0e                     	addb	%al, 14(%rcx)
+     17b: 10 86 02 43 0d 06            	adcb	%al, 101532418(%rsi)
+     181: 00 00                        	addb	%al, (%rax)
+     183: 00 00                        	addb	%al, (%rax)
+     185: 00 00                        	addb	%al, (%rax)
+     187: 00                           	<unknown>
