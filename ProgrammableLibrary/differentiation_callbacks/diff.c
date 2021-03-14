@@ -2,7 +2,7 @@
  * @Author: jamil
  * @Date:   2021-02-18T07:48:49-06:00
  * @Last modified by:   jamil
- * @Last modified time: 2021-03-07T23:45:27-06:00
+ * @Last modified time: 2021-03-08T00:25:48-06:00
  */
 
 
@@ -17,7 +17,7 @@ int
 diff (void *root1,    /*pointer to Data structure 1*/
       void *root2,    /*pointer to data structure 2*/
       void *(*iterator(void *)), /*Iterator function callback*/
-      int comparator(void *, void *),
+      int (*comparator)(void *, void *),
       void *(*get_app_data(void *))){  /*Comparison function callback*/
 
       void *next1 = NULL, *next2 = NULL;
